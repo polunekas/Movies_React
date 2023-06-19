@@ -6,14 +6,23 @@ class Search extends React.Component {
 		search: '',
 	}
 
+	handleKey = (event) => {
+		if (event.key  === 'Enter') {
+			this.props.searchMovies(this.state.search)
+		}
+	}
 	render() {
 		return  (
 		<div className='row'>
 
 			<div className="input-field">
-				<input placeholder="search" type="search" className="validate"
+				<input placeholder="Search" type="search" className="validate"
 				value = {this.state.search}
-				onChange = {(event) => this.setState({search:event.target.value})} />
+				onChange = {(event) => this.setState({search:event.target.value})}
+				onKeyDown={this.handleKey}
+				
+				 />
+				 <button className = "btn search-btn" onClick={()=> this.props.searchMovies(this.state.search)}>Search</button>
 			</div>
 		</div>
 		)
